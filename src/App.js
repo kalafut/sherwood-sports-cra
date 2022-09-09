@@ -5,6 +5,9 @@ import { useState } from 'react';
 import { allProgramsFlat, programsBySport, programsBySport2, sports } from './data/data';
 import hash from 'object-hash';
 import * as consts from './consts'
+import ReactSlider from 'react-slider'
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
 function ClubRow(props) {
   return (
@@ -157,11 +160,28 @@ function App() {
   //console.log(filteredSports)
   //console.log(p)
   return (
-    <div className="App">
-      <AgeRangePicker min={ageFilter.min} max={ageFilter.max} updateAgeFilter={updateAgeFilter} />
+    <Container className="p-3 App">
+      <ReactSlider
+        className="horizontal-slider"
+        thumbClassName="example-thumb"
+        trackClassName="example-track"
+        defaultValue={[0, 18]}
+        min={0}
+        max={18}
+        ariaLabel={["Lower thumb", "Upper thumb"]}
+        ariaValuetext={state => `Thumb value ${state.valueNow}`}
+        renderThumb={(props, state) => {
+          const v = state.valueNow < 18 ? state.valueNow : "18+"
+          return <div {...props}>{v}</div>
+        }}
+        pearling
+        minDistance={0}
+        value={[ageFilter.min, ageFilter.max]}
+        onChange={([low, high]) => updateAgeFilter({ min: low, max: high })}
+      />
       <SportFilter updateFilteredSports={updateFilteredSports} sports={sports} filteredSports={sportsFilter} />
       <AllProgramsTable programsBySport={p} />
-    </div>
+    </Container>
   );
 }
 
