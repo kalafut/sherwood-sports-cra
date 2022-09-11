@@ -165,8 +165,8 @@ function App() {
         className="horizontal-slider"
         thumbClassName="example-thumb"
         trackClassName="example-track"
-        defaultValue={[0, 18]}
-        min={0}
+        defaultValue={[2, 18]}
+        min={2}
         max={18}
         ariaLabel={["Lower thumb", "Upper thumb"]}
         ariaValuetext={state => `Thumb value ${state.valueNow}`}
