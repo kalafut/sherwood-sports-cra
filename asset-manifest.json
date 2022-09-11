@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/sherwood-sports/static/css/main.367d2beb.css",
-    "main.js": "/sherwood-sports/static/js/main.9084286b.js",
+    "main.js": "/sherwood-sports/static/js/main.feb1638d.js",
     "static/js/787.e5d935b6.chunk.js": "/sherwood-sports/static/js/787.e5d935b6.chunk.js",
     "static/media/logo.svg": "/sherwood-sports/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/sherwood-sports/index.html",
     "main.367d2beb.css.map": "/sherwood-sports/static/css/main.367d2beb.css.map",
-    "main.9084286b.js.map": "/sherwood-sports/static/js/main.9084286b.js.map",
+    "main.feb1638d.js.map": "/sherwood-sports/static/js/main.feb1638d.js.map",
     "787.e5d935b6.chunk.js.map": "/sherwood-sports/static/js/787.e5d935b6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.367d2beb.css",
-    "static/js/main.9084286b.js"
+    "static/js/main.feb1638d.js"
   ]
 }
