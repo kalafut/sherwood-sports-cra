@@ -8,6 +8,8 @@ import * as consts from './consts'
 import ReactSlider from 'react-slider'
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
+import { currentMonth, monthStr } from './util';
 
 function ClubRow(props) {
   return (
@@ -53,16 +55,50 @@ function ProgramsTable({ programs }) {
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Org</th>
+          <th scope="col">Season</th>
           <th scope="col">Age/Grade</th>
         </tr>
       </thead>
       <tbody>
         {
           programs.map(prog => {
+            let reg = false;
+            let active = false;
+
+            const m = currentMonth();
+            if (prog.registration) {
+              if (m >= prog.registration && m < prog.season[0]) {
+                reg = true;
+              }
+            }
+
+            if (prog.season && m >= prog.season[0] && m <= prog.season[1]) {
+              active = true;
+            }
+
+            let bg = "light", text = "dark";
+            if (reg) {
+              bg = "success";
+              text = "";
+            } else if (active) {
+              bg = "light"
+              text = "success"
+            }
+
+            let dateRange = prog.season ? `${monthStr(prog.season[0])}–${monthStr(prog.season[1])}` : '';
+
+            let b = <Badge bg={bg} text={text}>{dateRange}</Badge>
+            if (!reg && !active) {
+              b = <span>May-Jul</span>
+            }
+
+            //b = <Badge bg="light" text="dark">{dateRange}</Badge>
+
             return (
               <tr key={hash(prog)}>
                 <td><a href={prog.website}>{prog.name}</a></td>
                 <td><a href={prog.org.website}>{prog.org.name}</a></td>
+                <td>{b}</td>
                 <td>{ageStr(prog)}</td>
               </tr>
             )

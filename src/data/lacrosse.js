@@ -11,10 +11,12 @@ export default {
                     name: "Youth Lacrosse",
                     price: 140,
                     season: [consts.APR, consts.JUN],
-                    registration: [consts.JAN, consts.MAR],
+                    registration: consts.JAN,
                 },
                 {
-                    name: "Adult Lacrosse"
+                    name: "Adult Lacrosse",
+                    season: [consts.MAY, consts.JUN],
+                    registration: consts.JAN,
                 },
             ]
         },

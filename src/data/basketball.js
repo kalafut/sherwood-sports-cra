@@ -8,12 +8,13 @@ export default {
             sport: consts.BASKETBALL,
             programs: [
                 {
-                    name: "Rec Basketball"
+                    name: "Rec Basketball",
+                    registration: consts.SEP,
+                    season: [consts.NOV, consts.FEB],
                 },
                 {
                     name: "Competitive Basketball"
                 },
-
             ]
         },
     ]

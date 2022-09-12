@@ -11,7 +11,7 @@ export default {
                     name: "Fall Soccer",
                     price: 140,
                     season: [consts.APR, consts.JUN],
-                    registration: [consts.JAN, consts.MAR],
+                    registration: consts.JAN,
                 },
                 {
                     name: "Westside Timbers"
