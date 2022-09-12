@@ -2,6 +2,7 @@ import _ from 'lodash';
 import lacrosse from './lacrosse';
 import basketball from './basketball';
 import soccer from './soccer';
+import sample from './sample';
 import * as consts from '../consts'
 
 // sport can be overridden per program
@@ -9,7 +10,8 @@ const data = {
     orgs: [].concat(
         basketball.orgs,
         lacrosse.orgs,
-        soccer.orgs
+        soccer.orgs,
+        sample.orgs
     )
 }
 
@@ -22,12 +24,14 @@ function gradeToAge(grade, max) {
 }
 
 export const allProgramsFlat = _.flatMap(data.orgs, (org) => {
-    console.log(org)
+    //console.log(org)
     return org.programs.map(prog => {
         if (prog.sport === undefined) {
             prog.sport = org.sport
         }
-        // TODO: calculate effectiveAge
+        if ((prog.ageMin || prog.ageMax || prog.gradeMin || prog.gradeMax) && prog.allAges) {
+            throw (`Data Error: Program "${prog.name}" is specifying both age limits and allAges == true`)
+        }
         prog.effectiveAgeMin = prog.ageMin || gradeToAge(prog.gradeMin, false) || consts.MIN_FILTER_AGE;
         prog.effectiveAgeMax = prog.ageMax || gradeToAge(prog.gradeMax, true) || consts.MAX_FILTER_AGE;
 

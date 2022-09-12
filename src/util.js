@@ -19,6 +19,52 @@ export function monthStr(monthNum) {
 
 
 export function currentMonth() {
-    return 4;
+    return 1;
     return (new Date()).getMonth() + 1;
+}
+
+export function monthInRange(month, [start, end]) {
+    // Shift the range to handle spanning the end of year
+    if (start > end) {
+        end += 12;
+        if (month < start) {
+            month += 12;
+        }
+    }
+
+    return start <= month && month <= end;
+}
+
+// TODO: refactor
+export function ageStr(program) {
+    const { allAges, ageMin, ageMax, gradeMin, gradeMax } = program;
+
+    let ret = ''
+
+    if (allAges) {
+        return "All ages"
+    }
+
+
+    if (ageMin && ageMax) {
+        ret = `${ageMin} - ${ageMax} y/o`;
+    } else if (ageMax) {
+        ret = `${ageMax} and under`;
+    } else if (ageMin) {
+        ret = `${ageMin}+ y/o`;
+    }
+
+    if (ret !== '') {
+        return ret
+    }
+
+    if (gradeMin && gradeMax) {
+        ret = `${gradeMin} - ${gradeMax} grade`
+    } else if (gradeMax) {
+        ret = `Up to ${gradeMax} grade`
+    } else if (gradeMin) {
+        ret = `${gradeMin}+ grade`
+    }
+
+    return ret
 }

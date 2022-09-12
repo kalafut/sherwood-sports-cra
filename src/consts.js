@@ -1,7 +1,8 @@
 export const
     LACROSSE = "Lacrosse",
     BASKETBALL = "Basketball",
-    SOCCER = "Soccer"
+    SOCCER = "Soccer",
+    SAMPLE = "Sample"
     ;
 
 export const
@@ -20,6 +21,6 @@ export const
     ;
 
 export const
-    MIN_FILTER_AGE = 0,
-    MAX_FILTER_AGE = 99;
+    MIN_FILTER_AGE = 2,
+    MAX_FILTER_AGE = 18;
 
