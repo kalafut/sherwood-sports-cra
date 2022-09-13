@@ -11,8 +11,9 @@ import { OrgView } from './OrgView';
 function App() {
   return (
     <div className="App">
-      <a href="/">Main</a><br />
-      <a href="/about">About</a>
+      <Link to='/'>Main</Link>
+      <br />
+      <Link to="/about">About</Link>
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="about" element={<OrgView />} />
