@@ -3,12 +3,25 @@ import { programsBySport2, sports } from './data/data';
 import * as consts from './consts'
 import Container from 'react-bootstrap/Container';
 import { Filter } from './Filter';
-import { AllProgramsTable } from './ProgramTable'
-
-
+import { AllProgramsTable } from './ProgramTable';
+import { Routes, Route, Link } from "react-router-dom";
+import { OrgView } from './OrgView';
 
 
 function App() {
+  return (
+    <div className="App">
+      <a href="/">Main</a><br />
+      <a href="/about">About</a>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="about" element={<OrgView />} />
+      </Routes>
+    </div>
+  )
+}
+
+function Dashboard() {
   const [sportsFilter, setSportsFilter] = useState(new Set(sports));
   const [ageFilter, setAgeFilter] = useState({ min: consts.MIN_FILTER_AGE, max: consts.MAX_FILTER_AGE })
 
