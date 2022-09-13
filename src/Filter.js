@@ -3,6 +3,7 @@ import * as consts from './consts';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import Collapse from 'react-bootstrap/Collapse';
 
 export function Filter({ ageFilter, updateAgeFilter, updateFilteredSports, sports, sportsFilter }) {
     const [filterVisible, toggleFilter] = useState(true);
@@ -11,9 +12,12 @@ export function Filter({ ageFilter, updateAgeFilter, updateFilteredSports, sport
 
     return <div>
         {toggleButton}
-        {filterVisible ? <div><AgeRangeSlider ageFilter={ageFilter} updateAgeFilter={updateAgeFilter} />
-            <SportFilter updateFilteredSports={updateFilteredSports} sports={sports} filteredSports={sportsFilter} /></div>
-            : null}
+        <Collapse in={filterVisible}>
+            <div>
+                <AgeRangeSlider ageFilter={ageFilter} updateAgeFilter={updateAgeFilter} />
+                <SportFilter updateFilteredSports={updateFilteredSports} sports={sports} filteredSports={sportsFilter} />
+            </div>
+        </Collapse>
     </div>
 }
 

@@ -2,6 +2,7 @@ import { ageStr, currentMonth, monthStr, monthInRange } from './util';
 import Badge from 'react-bootstrap/Badge';
 import _ from 'lodash';
 import hash from 'object-hash';
+import { Fragment } from 'react';
 
 
 export function AllProgramsTable({ programsBySport }) {
@@ -25,10 +26,10 @@ export function AllProgramsTable({ programsBySport }) {
                 {
                     _.map(programsBySport, (programs, sport) => {
                         return (
-                            <>
+                            <Fragment key={hash([sport, programs])}>
                                 <tr key={sport} className="table-info fs-4 fw-bold"><td colSpan={4}>{sport}</td></tr>
                                 <ProgramTableRows key={hash(programs)} programs={programs} />
-                            </>
+                            </Fragment>
                         )
                     })
                 }
