@@ -13,10 +13,10 @@ function App() {
     <div className="App">
       <Link to='/'>Main</Link>
       <br />
-      <Link to="/about">About</Link>
+      <Link to="/org/sherwood-youth-lacrosse">Lacrosse</Link>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="about" element={<OrgView />} />
+        <Route path="/org/:orgname" element={<OrgView />} />
       </Routes>
     </div>
   )

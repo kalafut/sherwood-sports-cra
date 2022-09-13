@@ -19,7 +19,7 @@ export function monthStr(monthNum) {
 
 
 export function currentMonth() {
-    return 1;
+    //return 1;
     return (new Date()).getMonth() + 1;
 }
 

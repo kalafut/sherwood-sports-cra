@@ -70,6 +70,7 @@ export function AgeRangeSlider({ ageFilter, updateAgeFilter }) {
     />
 }
 
+// eslint-disable-next-line no-unused-vars
 function AgeRangePicker({ ageFilter, updateAgeFilter }) {
     //const max = ageFilter.max === consts.MAX_FILTER_AGE ? `${consts.MAX_FILTER_AGE}+` : ageFilter.max;
     const max = ageFilter.max;

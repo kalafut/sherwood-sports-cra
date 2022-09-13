@@ -1,6 +1,6 @@
 import * as consts from '../consts'
 
-export default {
+const orgList = {
     orgs: [
         {
             name: "Sample Sport Org 1",
@@ -24,3 +24,5 @@ export default {
     ]
 }
 
+
+export default orgList;

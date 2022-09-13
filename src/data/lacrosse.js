@@ -1,5 +1,5 @@
 import * as consts from '../consts'
-export default {
+const orgList = {
     orgs: [
         {
             name: "Sherwood Youth Lacrosse",
@@ -35,3 +35,5 @@ export default {
         },
     ]
 }
+
+export default orgList;

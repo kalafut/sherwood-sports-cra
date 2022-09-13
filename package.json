@@ -19,6 +19,7 @@
     "react-scripts": "5.0.1",
     "react-slider": "^2.0.3",
     "resize-observer-polyfill": "^1.5.1",
+    "slug": "^8.0.0",
     "use-resize-observer": "^9.0.2",
     "web-vitals": "^2.1.4"
   },
