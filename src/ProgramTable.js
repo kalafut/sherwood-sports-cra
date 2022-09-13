@@ -15,11 +15,11 @@ export function AllProgramsTable({ programsBySport }) {
     return (
         <table className="table">
             <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Org</th>
-                    <th scope="col">Season</th>
-                    <th scope="col">Age/Grade</th>
+                <tr className='table-light'>
+                    <th className="borderless" scope="col">Program Name</th>
+                    <th className="borderless" scope="col">Org</th>
+                    <th className="borderless" scope="col">Season</th>
+                    <th className="borderless" scope="col">Age/Grade</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,8 +27,9 @@ export function AllProgramsTable({ programsBySport }) {
                     _.map(programsBySport, (programs, sport) => {
                         return (
                             <Fragment key={hash([sport, programs])}>
-                                <tr key={sport} className="table-info fs-4 fw-bold"><td colSpan={4}>{sport}</td></tr>
+                                <tr key={sport} className="fw-bold"><td colSpan={4}>{sport}</td></tr>
                                 <ProgramTableRows key={hash(programs)} programs={programs} />
+                                <tr><td className="borderless" colSpan={4}></td></tr>
                             </Fragment>
                         )
                     })
@@ -70,13 +71,14 @@ function ProgramTableRows({ programs }) {
 
         b = <span className={active ? "fw-bold" : null}>{dateRange}</span>
 
+        let style = { border: 0 };
 
         return (
             <tr key={hash(prog)}>
-                <td><a href={prog.website}>{prog.name} {reg ? <Badge bg="success">R</Badge> : null}</a></td>
-                <td><a href={prog.org.website}>{prog.org.name}</a></td>
-                <td>{b}</td>
-                <td>{ageStr(prog)}</td>
+                <td style={style}><a href={prog.website}>{prog.name} {reg ? <Badge bg="success">R</Badge> : null}</a></td>
+                <td style={style}><a href={prog.org.website}>{prog.org.name}</a></td>
+                <td style={style}>{b}</td>
+                <td style={style}>{ageStr(prog)}</td>
             </tr>
         )
     })
