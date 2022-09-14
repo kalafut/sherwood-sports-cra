@@ -3,9 +3,10 @@ import Badge from 'react-bootstrap/Badge';
 import _ from 'lodash';
 import hash from 'object-hash';
 import { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 
-export function AllProgramsTable({ programsBySport }) {
+export function AllProgramsTable({ programsBySport, skipCostColumn = true, skipOrgColumn = false }) {
     if (_.keys(programsBySport).length === 0) {
         return <div>
             <h1>No Results!</h1>
@@ -16,8 +17,9 @@ export function AllProgramsTable({ programsBySport }) {
         <table className="table">
             <thead>
                 <tr className='table-light'>
-                    <th className="borderless" scope="col">Program Name</th>
-                    <th className="borderless" scope="col">Org</th>
+                    <th className="borderless" scope="col">Program</th>
+                    {skipOrgColumn ? null : <th className="borderless" scope="col">Org</th>}
+                    {skipCostColumn ? null : <th className="borderless" scope="col">Cost</th>}
                     <th className="borderless" scope="col">Season</th>
                     <th className="borderless" scope="col">Age/Grade</th>
                 </tr>
@@ -28,7 +30,7 @@ export function AllProgramsTable({ programsBySport }) {
                         return (
                             <Fragment key={hash([sport, programs])}>
                                 <tr key={sport} className="fw-bold"><td colSpan={4}>{sport}</td></tr>
-                                <ProgramTableRows key={hash(programs)} programs={programs} />
+                                <ProgramTableRows key={hash(programs)} programs={programs} skipOrgColumn={skipOrgColumn} />
                                 <tr><td className="borderless" colSpan={4}></td></tr>
                             </Fragment>
                         )
@@ -39,7 +41,7 @@ export function AllProgramsTable({ programsBySport }) {
     )
 }
 
-function ProgramTableRows({ programs }) {
+export function ProgramTableRows({ programs, skipCostColumn = true, skipOrgColumn = false }) {
     const rows = programs.map(prog => {
         let reg = false;
         let active = false;
@@ -75,8 +77,13 @@ function ProgramTableRows({ programs }) {
 
         return (
             <tr key={hash(prog)}>
-                <td style={style}><a href={prog.website}>{prog.name} {reg ? <Badge bg="success">R</Badge> : null}</a></td>
-                <td style={style}><a href={prog.org.website}>{prog.org.name}</a></td>
+                <td style={style}><a href={prog.url}>{prog.name} {reg ? <Badge bg="success">R</Badge> : null}</a></td>
+                {skipOrgColumn ? null :
+                    <td style={style}>
+                        <Link to={`/org/${prog.org.id}`}>{prog.org.name}</Link>
+                    </td>
+                }
+                {skipCostColumn ? null : <td style={style}>{prog.cost || ''}</td>}
                 <td style={style}>{b}</td>
                 <td style={style}>{ageStr(prog)}</td>
             </tr>

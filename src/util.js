@@ -13,6 +13,22 @@ const monthStrConv = {
     12: "Dev",
 }
 
+// courtesy of: https://stackoverflow.com/a/13627586
+function ordinal(i) {
+    var j = i % 10,
+        k = i % 100;
+    if (j == 1 && k != 11) {
+        return i + "st";
+    }
+    if (j == 2 && k != 12) {
+        return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return i + "rd";
+    }
+    return i + "th";
+}
+
 export function monthStr(monthNum) {
     return monthStrConv[monthNum];
 }
@@ -47,11 +63,11 @@ export function ageStr(program) {
 
 
     if (ageMin && ageMax) {
-        ret = `${ageMin} - ${ageMax} y/o`;
+        ret = `${ageMin}–${ageMax} years`;
     } else if (ageMax) {
-        ret = `${ageMax} and under`;
+        ret = `2–${ageMax} years`;
     } else if (ageMin) {
-        ret = `${ageMin}+ y/o`;
+        ret = `${ageMin}+ years`;
     }
 
     if (ret !== '') {
@@ -59,11 +75,11 @@ export function ageStr(program) {
     }
 
     if (gradeMin && gradeMax) {
-        ret = `${gradeMin} - ${gradeMax} grade`
+        ret = `${ordinal(gradeMin)}–${ordinal(gradeMax)} grade`
     } else if (gradeMax) {
-        ret = `Up to ${gradeMax} grade`
+        ret = `K–${ordinal(gradeMax)} grade`
     } else if (gradeMin) {
-        ret = `${gradeMin}+ grade`
+        ret = `${ordinal(gradeMin)}+ grade`
     }
 
     return ret

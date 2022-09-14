@@ -11,9 +11,6 @@ import { OrgView } from './OrgView';
 function App() {
   return (
     <div className="App">
-      <Link to='/'>Main</Link>
-      <br />
-      <Link to="/org/sherwood-youth-lacrosse">Lacrosse</Link>
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/org/:orgname" element={<OrgView />} />
@@ -46,7 +43,7 @@ function Dashboard() {
     <Container className="p-3 App">
       <Filter ageFilter={ageFilter} updateAgeFilter={updateAgeFilter}
         updateFilteredSports={updateFilteredSports} sports={sports} sportsFilter={sportsFilter} />
-      <AllProgramsTable programsBySport={p} />
+      <AllProgramsTable programsBySport={p} skipOrgColumn={true} />
     </Container>
   );
 }

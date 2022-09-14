@@ -8,7 +8,7 @@ import Collapse from 'react-bootstrap/Collapse';
 export function Filter({ ageFilter, updateAgeFilter, updateFilteredSports, sports, sportsFilter }) {
     const [filterVisible, toggleFilter] = useState(true);
 
-    const toggleButton = <Button onClick={() => toggleFilter(!filterVisible)}>{`${filterVisible ? 'Hide' : 'Show'} filters`}</Button>
+    const toggleButton = <Button onClick={() => toggleFilter(!filterVisible)}>{`${filterVisible ? 'Hide' : 'Show'} filters!`}</Button>
 
     return <div>
         {toggleButton}

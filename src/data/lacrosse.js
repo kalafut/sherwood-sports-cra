@@ -4,12 +4,21 @@ const orgList = {
         {
             name: "Sherwood Youth Lacrosse",
             summary: "We play Lacrosse",
-            website: "https://www.leagueathletics.com/Schedule.asp?org=sherwoodyouthlacrosse.com",
+            url: "https://www.leagueathletics.com/Schedule.asp?org=sherwoodyouthlacrosse.com",
             sport: consts.LACROSSE,
             programs: [
                 {
+                    name: "Fiddlesticks",
+                    url: "https://www.leagueathletics.com/Page.asp?n=107395&org=sherwoodyouthlacrosse.com",
+                    cost: "$175",
+                    season: [consts.APR, consts.MAY],
+                    registration: consts.JAN,
+                    gradeMin: 0,
+                    gradeMax: 2,
+                },
+                {
                     name: "Youth Lacrosse",
-                    price: 140,
+                    cost: "$140",
                     season: [consts.APR, consts.JUN],
                     registration: consts.JAN,
                 },
