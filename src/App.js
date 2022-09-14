@@ -3,9 +3,10 @@ import { programsBySport2, sports } from './data/data';
 import * as consts from './consts'
 import Container from 'react-bootstrap/Container';
 import { Filter } from './Filter';
-import { AllProgramsTable } from './ProgramTable';
+import { AllProgramsTable, CardView } from './ProgramTable';
 import { Routes, Route, Link } from "react-router-dom";
 import { OrgView } from './OrgView';
+import { Col, Row } from 'react-bootstrap';
 
 
 function App() {
@@ -40,10 +41,16 @@ function Dashboard() {
   let p = programsBySport2(sportsFilter, ageFilter);
 
   return (
-    <Container className="p-3 App">
-      <Filter ageFilter={ageFilter} updateAgeFilter={updateAgeFilter}
-        updateFilteredSports={updateFilteredSports} sports={sports} sportsFilter={sportsFilter} />
-      <AllProgramsTable programsBySport={p} skipOrgColumn={true} />
+    <Container className="App">
+      <Row>
+        <Col>
+          <Filter ageFilter={ageFilter} updateAgeFilter={updateAgeFilter}
+            updateFilteredSports={updateFilteredSports} sports={sports} sportsFilter={sportsFilter} />
+          <CardView />
+          <hr></hr>
+          <AllProgramsTable programsBySport={p} skipOrgColumn={true} />
+        </Col>
+      </Row>
     </Container>
   );
 }

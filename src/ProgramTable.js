@@ -4,7 +4,66 @@ import _ from 'lodash';
 import hash from 'object-hash';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Col from 'react-bootstrap/Col';
 
+export function CardView() {
+    return (
+        <div>
+            <Card>
+                <Card.Body>
+                    <Card.Title><a href="https://cnn.com">Sherwood Youth Lacrosse</a></Card.Title>
+                    <Card.Text>
+                        Some quick example text to build on the card title and make up the
+                        bulk of the card's content.
+                        <br></br>
+                        <br></br>
+                        <h5>Programs</h5>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item className="d-flex align-items-start justify-content-between">
+                                <Col className="d-flex align-items-start justify-content-start">
+                                    A
+                                </Col>
+                                <Col className="d-flex align-items-start justify-content-end">
+                                    <Col className="d-flex justify-content-start">
+                                        <span>Apr–May</span>
+                                    </Col>
+                                    <Col className="d-flex justify-content-end">
+                                        <Badge pill>K–2nd</Badge>
+                                    </Col>
+                                </Col>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="d-flex align-items-start justify-content-between">
+                                <Col className="d-flex align-items-start justify-content-start">
+                                    <a href="https://www.leagueathletics.com/Page.asp?n=107395&org=sherwoodyouthlacrosse.com">
+                                        <span className='fw-bold'>Fiddlesticks</span>
+                                    </a>
+                                </Col>
+                                <Col className="d-flex align-items-start justify-content-end">
+                                    <Col className="d-flex justify-content-start">
+                                        <span>Apr–May</span>
+                                    </Col>
+                                    <Col className="d-flex justify-content-end">
+                                        <Badge pill>K–2nd</Badge>
+                                    </Col>
+                                </Col>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card.Text>
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            <span className='fw-bold'>Fiddlesticks</span>: Apr–May, K–2nd grade
+                        </ListGroup.Item>
+                        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                        <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                    </ListGroup>
+                </Card.Body>
+            </Card>
+        </div>
+    )
+}
 
 export function AllProgramsTable({ programsBySport, skipCostColumn = true, skipOrgColumn = false }) {
     if (_.keys(programsBySport).length === 0) {
