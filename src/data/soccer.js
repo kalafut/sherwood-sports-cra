@@ -1,57 +1,56 @@
-import * as consts from '../consts'
+import * as consts from "../consts";
 
 const orgList = {
-    orgs: [
+  orgs: [
+    {
+      name: "Sherwood Youth Soccer",
+      url: "https://www.sherwoodsoccer.org/",
+      sport: consts.SOCCER,
+      programs: [
         {
-            name: "Sherwood Youth Soccer",
-            url: "https://www.sherwoodsoccer.org/",
-            sport: consts.SOCCER,
-            programs: [
-                {
-                    name: "Fall Soccer",
-                    price: 140,
-                    season: [consts.APR, consts.JUN],
-                    registration: consts.JAN,
-                },
-                {
-                    name: "Westside Timbers"
-                },
-            ]
+          name: "Fall Soccer",
+          price: 140,
+          season: [consts.APR, consts.JUN],
+          registration: consts.JAN,
         },
         {
-            name: "Westside Timbers",
-            url: "http://www.westsidetimbers.org/",
-            sport: consts.SOCCER,
-            programs: [
-                {
-                    name: "Timber Tots",
-                    price: 140,
-                    season: [consts.APR, consts.JUN],
-                    registration: [consts.JAN, consts.MAR],
-                    url: "http://www.westsidetimbers.org/about-us/program-overview/timber-tots-program",
-                    ageMax: 6,
-
-                },
-                {
-                    name: "Development Program",
-                    url: "http://www.westsidetimbers.org/about-us/program-overview/development-program-wdp",
-                    ageMin: 7,
-                    ageMax: 10,
-                },
-                {
-                    name: "Development Program 2",
-                    url: "http://www.westsidetimbers.org/about-us/program-overview/development-program-wdp",
-                    gradeMin: 3,
-                    gradeMax: 5,
-                },
-                {
-                    name: "At least 10",
-                    url: "http://www.westsidetimbers.org/about-us/program-overview/development-program-wdp",
-                    ageMin: 10,
-                },
-            ]
+          name: "Westside Timbers",
         },
-    ]
-}
+      ],
+    },
+    {
+      name: "Westside Timbers",
+      url: "http://www.westsidetimbers.org/",
+      sport: consts.SOCCER,
+      programs: [
+        {
+          name: "Timber Tots",
+          price: 140,
+          season: [consts.APR, consts.JUN],
+          registration: [consts.JAN, consts.MAR],
+          url: "http://www.westsidetimbers.org/about-us/program-overview/timber-tots-program",
+          ageMax: 6,
+        },
+        {
+          name: "Development Program",
+          url: "http://www.westsidetimbers.org/about-us/program-overview/development-program-wdp",
+          ageMin: 7,
+          ageMax: 10,
+        },
+        {
+          name: "Development Program 2",
+          url: "http://www.westsidetimbers.org/about-us/program-overview/development-program-wdp",
+          gradeMin: 3,
+          gradeMax: 5,
+        },
+        {
+          name: "At least 10",
+          url: "http://www.westsidetimbers.org/about-us/program-overview/development-program-wdp",
+          ageMin: 10,
+        },
+      ],
+    },
+  ],
+};
 
 export default orgList;
