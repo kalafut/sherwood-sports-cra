@@ -1,8 +1,8 @@
 import _ from "lodash";
-import lacrosse from "./lacrosse";
-import basketball from "./basketball";
-import soccer from "./soccer";
-import sample from "./sample";
+import { orgs as lacrosse } from "./lacrosse";
+import { orgs as basketball } from "./basketball";
+import { orgs as soccer } from "./soccer";
+import { orgs as sample } from "./sample";
 import * as consts from "../consts";
 import slug from "slug";
 import { Org, OrgList } from "../types";
@@ -10,7 +10,7 @@ import { Org, OrgList } from "../types";
 // sport can be overridden per program
 const data: { orgs: Org[] } = {
   //orgs: [].concat(basketball.orgs, lacrosse.orgs, soccer.orgs, sample.orgs),
-  orgs: [...basketball.orgs, ...lacrosse.orgs, ...soccer.orgs, ...sample.orgs],
+  orgs: [...basketball, ...lacrosse, ...soccer, ...sample],
 };
 
 // TODO: combine
