@@ -14,7 +14,7 @@ const monthStrConv = {
 }
 
 // courtesy of: https://stackoverflow.com/a/13627586
-function ordinal(i) {
+export function ordinal(i) {
     var j = i % 10,
         k = i % 100;
     if (j == 1 && k != 11) {
@@ -80,6 +80,42 @@ export function ageStr(program) {
         ret = `K–${ordinal(gradeMax)} grade`
     } else if (gradeMin) {
         ret = `${ordinal(gradeMin)}+ grade`
+    }
+
+    return ret
+}
+
+export function ageStr2(program) {
+    const { allAges, ageMin, ageMax, gradeMin, gradeMax } = program;
+
+    let ret = {
+        str: '',
+        type: 'age', // TODO bleh
+    }
+
+    if (allAges) {
+        return "All ages"
+    }
+
+
+    if (ageMin && ageMax) {
+        ret = `${ageMin}–${ageMax}`;
+    } else if (ageMax) {
+        ret = `2–${ageMax}`;
+    } else if (ageMin) {
+        ret = `${ageMin}+`;
+    }
+
+    if (ret !== '') {
+        return ret
+    }
+
+    if (gradeMin && gradeMax) {
+        ret = `${gradeMin}–${ordinal(gradeMax)}`
+    } else if (gradeMax) {
+        ret = `K–${ordinal(gradeMax)}`
+    } else if (gradeMin) {
+        ret = `${ordinal(gradeMin)}+`
     }
 
     return ret

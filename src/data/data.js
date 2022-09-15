@@ -42,6 +42,10 @@ export function orgById(id) {
     return _.find(data.orgs, ['id', id]);
 }
 
+export function orgs() {
+    return data.orgs;
+}
+
 export const allProgramsFlat = _.flatMap(data.orgs, (org) => {
     return org.programs.map(prog => {
         if (prog.sport === undefined) {

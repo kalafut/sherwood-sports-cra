@@ -11,6 +11,8 @@ const orgList = {
                     name: "Rec Basketball",
                     registration: consts.SEP,
                     season: [consts.NOV, consts.FEB],
+                    gradeMin: 3,
+                    gradeMax: 12,
                 },
                 {
                     name: "Competitive Basketball"

@@ -3,7 +3,7 @@ import { programsBySport2, sports } from './data/data';
 import * as consts from './consts'
 import Container from 'react-bootstrap/Container';
 import { Filter } from './Filter';
-import { AllProgramsTable, CardView } from './ProgramTable';
+import { AllProgramsTable, CardView, CardView2 } from './ProgramTable';
 import { Routes, Route, Link } from "react-router-dom";
 import { OrgView } from './OrgView';
 import { Col, Row } from 'react-bootstrap';
@@ -46,9 +46,9 @@ function Dashboard() {
         <Col>
           <Filter ageFilter={ageFilter} updateAgeFilter={updateAgeFilter}
             updateFilteredSports={updateFilteredSports} sports={sports} sportsFilter={sportsFilter} />
-          <CardView />
-          <hr></hr>
-          <AllProgramsTable programsBySport={p} skipOrgColumn={true} />
+          <CardView2 />
+          {/* <CardView /> */}
+          {/* <AllProgramsTable programsBySport={p} skipOrgColumn={true} /> */}
         </Col>
       </Row>
     </Container>

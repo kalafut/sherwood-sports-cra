@@ -39,7 +39,7 @@ const orgList = {
                     ageMax: 10,
                 },
                 {
-                    name: "Development Program2",
+                    name: "Development Program 2",
                     url: "http://www.westsidetimbers.org/about-us/program-overview/development-program-wdp",
                     gradeMin: 3,
                     gradeMax: 5,
