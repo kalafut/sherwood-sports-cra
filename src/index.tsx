@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.css";
 // components takes precedence over default styles.
 // https://create-react-app.dev/docs/adding-bootstrap/#using-a-custom-theme
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLFormElement);
 root.render(
   <React.StrictMode>
     <HashRouter>
@@ -21,4 +21,4 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//reportWebVitals();

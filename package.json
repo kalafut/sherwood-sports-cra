@@ -56,6 +56,10 @@
   },
   "homepage": "https://kalafut.github.io/sherwood-sports",
   "devDependencies": {
+    "@types/lodash": "^4.14.185",
+    "@types/object-hash": "^2.2.1",
+    "@types/react-slider": "^1.3.1",
+    "@types/slug": "^5.0.3",
     "jest": "^27.5.1",
     "prettier": "2.7.1"
   }

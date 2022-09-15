@@ -1,6 +1,7 @@
 import * as consts from "../consts";
+import { OrgList } from "../types";
 
-const orgList = {
+const orgList: OrgList = {
   orgs: [
     {
       name: "Sample Sport Org 1",

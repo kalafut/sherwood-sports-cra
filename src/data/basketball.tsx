@@ -1,6 +1,8 @@
+import slug from "slug";
 import * as consts from "../consts";
+import { OrgList } from "../types";
 
-const orgList = {
+const orgList: OrgList = {
   orgs: [
     {
       name: "Sherwood Youth Basketball",

@@ -1,4 +1,10 @@
-const monthStrConv = {
+import { Program } from "./types";
+
+interface numStrConv {
+  [key: number]: string;
+}
+
+const monthStrConv: numStrConv = {
   1: "Jan",
   2: "Feb",
   3: "Mar",
@@ -14,7 +20,7 @@ const monthStrConv = {
 };
 
 // courtesy of: https://stackoverflow.com/a/13627586
-export function ordinal(i) {
+export function ordinal(i: number) {
   var j = i % 10,
     k = i % 100;
   if (j == 1 && k != 11) {
@@ -29,7 +35,7 @@ export function ordinal(i) {
   return i + "th";
 }
 
-export function monthStr(monthNum) {
+export function monthStr(monthNum: number) {
   return monthStrConv[monthNum];
 }
 
@@ -38,7 +44,7 @@ export function currentMonth() {
   return new Date().getMonth() + 1;
 }
 
-export function monthInRange(month, [start, end]) {
+export function monthInRange(month: number, [start, end]: number[]) {
   // Shift the range to handle spanning the end of year
   if (start > end) {
     end += 12;
@@ -51,7 +57,7 @@ export function monthInRange(month, [start, end]) {
 }
 
 // TODO: refactor
-export function ageStr(program) {
+export function ageStr(program: Program) {
   const { allAges, ageMin, ageMax, gradeMin, gradeMax } = program;
 
   let ret = "";
@@ -83,37 +89,37 @@ export function ageStr(program) {
   return ret;
 }
 
-export function ageStr2(program) {
-  const { allAges, ageMin, ageMax, gradeMin, gradeMax } = program;
+// export function ageStr2(program: Program): string {
+//   const { allAges, ageMin, ageMax, gradeMin, gradeMax } = program;
 
-  let ret = {
-    str: "",
-    type: "age", // TODO bleh
-  };
+//   let ret = {
+//     str: "",
+//     type: "age", // TODO bleh
+//   };
 
-  if (allAges) {
-    return "All ages";
-  }
+//   if (allAges) {
+//     return "All ages";
+//   }
 
-  if (ageMin && ageMax) {
-    ret = `${ageMin}–${ageMax}`;
-  } else if (ageMax) {
-    ret = `2–${ageMax}`;
-  } else if (ageMin) {
-    ret = `${ageMin}+`;
-  }
+//   if (ageMin && ageMax) {
+//     ret = `${ageMin}–${ageMax}`;
+//   } else if (ageMax) {
+//     ret = `2–${ageMax}`;
+//   } else if (ageMin) {
+//     ret = `${ageMin}+`;
+//   }
 
-  if (ret !== "") {
-    return ret;
-  }
+//   if (ret !== "") {
+//     return ret;
+//   }
 
-  if (gradeMin && gradeMax) {
-    ret = `${gradeMin}–${ordinal(gradeMax)}`;
-  } else if (gradeMax) {
-    ret = `K–${ordinal(gradeMax)}`;
-  } else if (gradeMin) {
-    ret = `${ordinal(gradeMin)}+`;
-  }
+//   if (gradeMin && gradeMax) {
+//     ret = `${gradeMin}–${ordinal(gradeMax)}`;
+//   } else if (gradeMax) {
+//     ret = `K–${ordinal(gradeMax)}`;
+//   } else if (gradeMin) {
+//     ret = `${ordinal(gradeMin)}+`;
+//   }
 
-  return ret;
-}
+//   return ret;
+// }

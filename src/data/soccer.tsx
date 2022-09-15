@@ -1,6 +1,7 @@
 import * as consts from "../consts";
+import { OrgList } from "../types";
 
-const orgList = {
+const orgList: OrgList = {
   orgs: [
     {
       name: "Sherwood Youth Soccer",
@@ -9,7 +10,6 @@ const orgList = {
       programs: [
         {
           name: "Fall Soccer",
-          price: 140,
           season: [consts.APR, consts.JUN],
           registration: consts.JAN,
         },
@@ -25,9 +25,8 @@ const orgList = {
       programs: [
         {
           name: "Timber Tots",
-          price: 140,
           season: [consts.APR, consts.JUN],
-          registration: [consts.JAN, consts.MAR],
+          registration: consts.JAN,
           url: "http://www.westsidetimbers.org/about-us/program-overview/timber-tots-program",
           ageMax: 6,
         },

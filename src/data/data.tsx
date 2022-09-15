@@ -5,14 +5,16 @@ import soccer from "./soccer";
 import sample from "./sample";
 import * as consts from "../consts";
 import slug from "slug";
+import { Org, OrgList } from "../types";
 
 // sport can be overridden per program
-const data = {
-  orgs: [].concat(basketball.orgs, lacrosse.orgs, soccer.orgs, sample.orgs),
+const data: { orgs: Org[] } = {
+  //orgs: [].concat(basketball.orgs, lacrosse.orgs, soccer.orgs, sample.orgs),
+  orgs: [...basketball.orgs, ...lacrosse.orgs, ...soccer.orgs, ...sample.orgs],
 };
 
 // TODO: combine
-function gradeToAge(grade, max) {
+function gradeToAge(grade: number, max: boolean) {
   const offset = max ? 6 : 5;
   if (grade) {
     return grade + offset;
@@ -33,7 +35,7 @@ function slugifyOrgs() {
 
 slugifyOrgs();
 
-export function orgById(id) {
+export function orgById(id: string) {
   return _.find(data.orgs, ["id", id]);
 }
 
@@ -55,9 +57,9 @@ export const allProgramsFlat = _.flatMap(data.orgs, (org) => {
       );
     }
     prog.effectiveAgeMin =
-      prog.ageMin || gradeToAge(prog.gradeMin, false) || consts.MIN_FILTER_AGE;
+      prog.ageMin || gradeToAge(prog.gradeMin!, false) || consts.MIN_FILTER_AGE;
     prog.effectiveAgeMax =
-      prog.ageMax || gradeToAge(prog.gradeMax, true) || consts.MAX_FILTER_AGE;
+      prog.ageMax || gradeToAge(prog.gradeMax!, true) || consts.MAX_FILTER_AGE;
 
     return { ...prog, org: org };
   });
@@ -67,12 +69,12 @@ export const sports = _.uniq(allProgramsFlat.map((v) => v.sport)).sort();
 
 export const programsBySport = _.groupBy(allProgramsFlat, "sport");
 
-export function programsBySport2(sportsFilter, ageFilter) {
+export function programsBySport2(sportsFilter: any, ageFilter: any) {
   const filtered = allProgramsFlat.filter(
     (v) =>
       (sportsFilter.length === 0 || sportsFilter.has(v.sport)) &&
-      v.effectiveAgeMax >= ageFilter.min &&
-      v.effectiveAgeMin <= ageFilter.max
+      v.effectiveAgeMax! >= ageFilter.min &&
+      v.effectiveAgeMin! <= ageFilter.max
   );
 
   return _.groupBy(filtered, "sport");

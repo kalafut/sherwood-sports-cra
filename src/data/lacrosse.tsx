@@ -1,5 +1,7 @@
 import * as consts from "../consts";
-const orgList = {
+import { OrgList } from "../types";
+
+const orgList: OrgList = {
   orgs: [
     {
       name: "Sherwood Youth Lacrosse",
@@ -10,7 +12,6 @@ const orgList = {
         {
           name: "Fiddlesticks",
           url: "https://www.leagueathletics.com/Page.asp?n=107395&org=sherwoodyouthlacrosse.com",
-          cost: "$175",
           season: [consts.APR, consts.MAY],
           registration: consts.JAN,
           gradeMin: 0,
@@ -18,7 +19,6 @@ const orgList = {
         },
         {
           name: "Youth Lacrosse",
-          cost: "$140",
           season: [consts.APR, consts.JUN],
           registration: consts.JAN,
         },

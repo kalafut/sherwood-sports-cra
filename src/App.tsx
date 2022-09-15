@@ -3,17 +3,18 @@ import { programsBySport2, sports } from "./data/data";
 import * as consts from "./consts";
 import Container from "react-bootstrap/Container";
 import { Filter } from "./Filter";
-import { AllProgramsTable, CardView, CardView2 } from "./ProgramTable";
+import { CardView, CardView2 } from "./ProgramTable";
 import { Routes, Route, Link } from "react-router-dom";
-import { OrgView } from "./OrgView";
+// import { OrgView } from "./OrgView";
 import { Col, Row } from "react-bootstrap";
+import { AgeFilter } from "./types";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/org/:orgname" element={<OrgView />} />
+        {/* <Route path="/org/:orgname" element={<OrgView />} /> */}
       </Routes>
     </div>
   );
@@ -26,15 +27,15 @@ function Dashboard() {
     max: consts.MAX_FILTER_AGE,
   });
 
-  const updateFilteredSports = (sport, present) => {
+  const updateFilteredSports = (sport: string, included: boolean) => {
     setSportsFilter((prev) => {
-      let n = new Set([...prev]);
-      present ? n.add(sport) : n.delete(sport);
+      let n = new Set(Array.from(prev)); // https://github.com/Microsoft/TypeScript/issues/8856
+      included ? n.add(sport) : n.delete(sport);
       return n;
     });
   };
 
-  const updateAgeFilter = ({ min, max }) => {
+  const updateAgeFilter = ({ min, max }: AgeFilter) => {
     if (
       min >= consts.MIN_FILTER_AGE &&
       max <= consts.MAX_FILTER_AGE &&

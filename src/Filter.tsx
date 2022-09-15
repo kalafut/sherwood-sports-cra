@@ -5,13 +5,22 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 
-export function Filter({
-  ageFilter,
-  updateAgeFilter,
-  updateFilteredSports,
-  sports,
-  sportsFilter,
-}) {
+interface FilterProps {
+  ageFilter: any;
+  updateAgeFilter: any;
+  updateFilteredSports: any;
+  sports: any;
+  sportsFilter: any;
+}
+
+export function Filter(props: FilterProps) {
+  const {
+    ageFilter,
+    updateAgeFilter,
+    updateFilteredSports,
+    sports,
+    sportsFilter,
+  } = props;
   const [filterVisible, toggleFilter] = useState(true);
 
   const toggleButton = (
@@ -40,7 +49,15 @@ export function Filter({
   );
 }
 
-function SportFilterRow({ sport, selected, updateFilteredSports }) {
+interface SportFilterRowProps {
+  sport: string;
+  selected: boolean;
+  updateFilteredSports: any;
+}
+
+function SportFilterRow(props: SportFilterRowProps) {
+  const { sport, selected, updateFilteredSports } = props;
+
   return (
     <div className="form-check">
       <input
@@ -59,7 +76,15 @@ function SportFilterRow({ sport, selected, updateFilteredSports }) {
   );
 }
 
-export function SportFilter({ sports, filteredSports, updateFilteredSports }) {
+interface SportFilterProps {
+  sports: string[];
+  filteredSports: Set<string>;
+  updateFilteredSports: any;
+}
+
+export function SportFilter(props: SportFilterProps) {
+  const { sports, filteredSports, updateFilteredSports } = props;
+
   return (
     <div>
       {sports.map((sport) => (
@@ -74,7 +99,14 @@ export function SportFilter({ sports, filteredSports, updateFilteredSports }) {
   );
 }
 
-export function AgeRangeSlider({ ageFilter, updateAgeFilter }) {
+interface AgeRangeSliderProps {
+  ageFilter: any;
+  updateAgeFilter: any;
+}
+
+export function AgeRangeSlider(props: AgeRangeSliderProps) {
+  const { ageFilter, updateAgeFilter } = props;
+
   return (
     <ReactSlider
       className="horizontal-slider"
@@ -100,39 +132,39 @@ export function AgeRangeSlider({ ageFilter, updateAgeFilter }) {
   );
 }
 
-// eslint-disable-next-line no-unused-vars
-function AgeRangePicker({ ageFilter, updateAgeFilter }) {
-  //const max = ageFilter.max === consts.MAX_FILTER_AGE ? `${consts.MAX_FILTER_AGE}+` : ageFilter.max;
-  const max = ageFilter.max;
-  return (
-    <div>
-      <input
-        type="number"
-        value={`${ageFilter.min}`}
-        onChange={(e) => {
-          updateAgeFilter({ min: e.target.valueAsNumber, max: ageFilter.max });
-        }}
-      />
-      <input
-        type="number"
-        value={`${max}`}
-        onChange={(e) => {
-          updateAgeFilter({ min: ageFilter.min, max: e.target.valueAsNumber });
-        }}
-      />
-    </div>
-  );
-}
+// // eslint-disable-next-line no-unused-vars
+// function AgeRangePicker({ ageFilter, updateAgeFilter }) {
+//   //const max = ageFilter.max === consts.MAX_FILTER_AGE ? `${consts.MAX_FILTER_AGE}+` : ageFilter.max;
+//   const max = ageFilter.max;
+//   return (
+//     <div>
+//       <input
+//         type="number"
+//         value={`${ageFilter.min}`}
+//         onChange={(e) => {
+//           updateAgeFilter({ min: e.target.valueAsNumber, max: ageFilter.max });
+//         }}
+//       />
+//       <input
+//         type="number"
+//         value={`${max}`}
+//         onChange={(e) => {
+//           updateAgeFilter({ min: ageFilter.min, max: e.target.valueAsNumber });
+//         }}
+//       />
+//     </div>
+//   );
+// }
 
-export function AgeRangePicker2({ ageFilter, updateAgeFilter }) {
-  let options = [];
+// export function AgeRangePicker2({ ageFilter, updateAgeFilter }) {
+//   let options = [];
 
-  for (let i = consts.MIN_FILTER_AGE; i <= consts.MAX_FILTER_AGE; i++) {
-    options.push(
-      <option key={i} value={i}>
-        {i}
-      </option>
-    );
-  }
-  return <Form.Select>{options.map((o) => o)}</Form.Select>;
-}
+//   for (let i = consts.MIN_FILTER_AGE; i <= consts.MAX_FILTER_AGE; i++) {
+//     options.push(
+//       <option key={i} value={i}>
+//         {i}
+//       </option>
+//     );
+//   }
+//   return <Form.Select>{options.map((o) => o)}</Form.Select>;
+// }
