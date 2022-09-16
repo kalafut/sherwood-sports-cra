@@ -1,4 +1,4 @@
-export interface AgeFilter {
+export interface AgeRange {
   min: number;
   max: number;
 }
@@ -37,3 +37,7 @@ export interface AgeFilter {
 export type AgeFilterUpdater = (filter: AgeFilter) => void;
 export type SportsFilterUpdater = (sport: string, included: boolean) => void;
 export type SportsFilter = Set<string>;
+
+export interface ProgramFilterer {
+  filter: (program: Program, org: Org) => boolean;
+}

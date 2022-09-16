@@ -3,14 +3,21 @@ import * as consts from "./consts";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
-import { AgeFilter, AgeFilterUpdater, SportsFilterUpdater } from "./types";
+import {
+  AgeFilter,
+  AgeFilterUpdater,
+  AgeRange,
+  Org,
+  Program,
+  SportsFilterUpdater,
+} from "./types";
 
 interface FilterProps {
   ageFilter: AgeFilter;
   updateAgeFilter: AgeFilterUpdater;
   updateFilteredSports: SportsFilterUpdater;
   sports: string[];
-  sportsFilter: Set<string>;
+  sportsFilter: SportsFilterClass;
 }
 
 export function Filter(props: FilterProps) {
@@ -41,7 +48,7 @@ export function Filter(props: FilterProps) {
           <SportFilter
             updateFilteredSports={updateFilteredSports}
             sports={sports}
-            filteredSports={sportsFilter}
+            sportsFilter={sportsFilter}
           />
         </div>
       </Collapse>
@@ -78,12 +85,12 @@ function SportFilterRow(props: SportFilterRowProps) {
 
 interface SportFilterProps {
   sports: string[];
-  filteredSports: Set<string>;
+  sportsFilter: SportsFilterClass;
   updateFilteredSports: SportsFilterUpdater;
 }
 
 export function SportFilter(props: SportFilterProps) {
-  const { sports, filteredSports, updateFilteredSports } = props;
+  const { sports, sportsFilter, updateFilteredSports } = props;
 
   return (
     <div>
@@ -92,7 +99,7 @@ export function SportFilter(props: SportFilterProps) {
           updateFilteredSports={updateFilteredSports}
           key={sport}
           sport={sport}
-          selected={filteredSports.has(sport)}
+          selected={sportsFilter.has(sport)}
         />
       ))}
     </div>
@@ -100,7 +107,7 @@ export function SportFilter(props: SportFilterProps) {
 }
 
 interface AgeRangeSliderProps {
-  ageFilter: AgeFilter;
+  ageFilter: AgeRange;
   updateAgeFilter: AgeFilterUpdater;
 }
 
@@ -130,4 +137,61 @@ export function AgeRangeSlider(props: AgeRangeSliderProps) {
       onChange={([low, high]) => updateAgeFilter({ min: low, max: high })}
     />
   );
+}
+
+function gradeToAge(grade: number, max: boolean) {
+  const offset = max ? 6 : 5;
+  if (grade) {
+    return grade + offset;
+  }
+}
+
+export class AgeFilterClass {
+  constructor(
+    public min: number = consts.MIN_FILTER_AGE,
+    public max: number = consts.MAX_FILTER_AGE
+  ) {}
+
+  filter(program: Program, org: Org): boolean {
+    const prog = program;
+
+    const effectiveAgeMin =
+      prog.ageMin ||
+      (prog.gradeMin && gradeToAge(prog.gradeMin, false)) ||
+      consts.MIN_FILTER_AGE;
+    const effectiveAgeMax =
+      prog.ageMax ||
+      (prog.gradeMax && gradeToAge(prog.gradeMax, true)) ||
+      consts.MAX_FILTER_AGE;
+
+    return effectiveAgeMax >= this.min && effectiveAgeMin <= this.max;
+  }
+}
+
+export class SportsFilterClass {
+  filteredSports: Set<string>;
+
+  constructor(sports: string[]) {
+    this.filteredSports = new Set(sports);
+  }
+
+  newAdded(sport: string) {
+    let s = new Set<string>(this.filteredSports);
+    s.add(sport);
+    return new SportsFilterClass(Array.from(s));
+  }
+
+  newDeleted(sport: string) {
+    let s = new Set<string>(this.filteredSports);
+    s.delete(sport);
+    return new SportsFilterClass(Array.from(s));
+  }
+
+  filter(program: Program, org: Org): boolean {
+    const sport = program.sport || org.sport;
+    return this.filteredSports.has(sport);
+  }
+  has(sport: string): boolean {
+    return this.filteredSports.has(sport);
+  }
 }

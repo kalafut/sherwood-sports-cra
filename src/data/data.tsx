@@ -4,7 +4,7 @@ import { orgs as basketball } from "./basketball";
 import { orgs as soccer } from "./soccer";
 import { orgs as sample } from "./sample";
 import * as consts from "../consts";
-import { Org, Program } from "../types";
+import { Org, Program, ProgramFilterer } from "../types";
 
 // sport can be overridden per program
 const data: { orgs: Org[] } = {
@@ -21,6 +21,19 @@ function gradeToAge(grade: number, max: boolean) {
 
 export function orgs() {
   return data.orgs;
+}
+
+export function filteredOrgs(filters: ProgramFilterer[]): Org[] {
+  const newOrgs = data.orgs.map((org) => {
+    let newOrg = { ...org };
+    newOrg.programs = org.programs.filter((program) => {
+      return filters.every((f) => f.filter(program, newOrg));
+    });
+
+    return newOrg;
+  });
+
+  return newOrgs.filter((org: Org) => org.programs.length > 0);
 }
 
 export const allProgramsFlat: Program[] = _.flatMap(data.orgs, (org) => {
