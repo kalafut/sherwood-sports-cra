@@ -4,13 +4,14 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
+import { AgeFilter, AgeFilterUpdater, SportsFilterUpdater } from "./types";
 
 interface FilterProps {
-  ageFilter: any;
-  updateAgeFilter: any;
-  updateFilteredSports: any;
-  sports: any;
-  sportsFilter: any;
+  ageFilter: AgeFilter;
+  updateAgeFilter: AgeFilterUpdater;
+  updateFilteredSports: SportsFilterUpdater;
+  sports: string[];
+  sportsFilter: Set<string>;
 }
 
 export function Filter(props: FilterProps) {
@@ -52,7 +53,7 @@ export function Filter(props: FilterProps) {
 interface SportFilterRowProps {
   sport: string;
   selected: boolean;
-  updateFilteredSports: any;
+  updateFilteredSports: SportsFilterUpdater;
 }
 
 function SportFilterRow(props: SportFilterRowProps) {
@@ -79,7 +80,7 @@ function SportFilterRow(props: SportFilterRowProps) {
 interface SportFilterProps {
   sports: string[];
   filteredSports: Set<string>;
-  updateFilteredSports: any;
+  updateFilteredSports: SportsFilterUpdater;
 }
 
 export function SportFilter(props: SportFilterProps) {
@@ -100,8 +101,8 @@ export function SportFilter(props: SportFilterProps) {
 }
 
 interface AgeRangeSliderProps {
-  ageFilter: any;
-  updateAgeFilter: any;
+  ageFilter: AgeFilter;
+  updateAgeFilter: AgeFilterUpdater;
 }
 
 export function AgeRangeSlider(props: AgeRangeSliderProps) {

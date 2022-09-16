@@ -1,3 +1,11 @@
+import slug from "slug";
+import { allProgramsFlat } from "./data/data";
+
+export interface AgeFilter {
+  min: number;
+  max: number;
+}
+
 export interface Program {
   name: string;
   registration?: number;
@@ -24,43 +32,11 @@ export interface Org {
   url?: string;
 }
 
-export interface OrgData {
-  name: string;
-  summary?: string;
-  sport: string;
-  programs: Program[];
-  id?: string;
-  url?: string;
-}
-
-export interface OrgClass extends OrgData {
-  slug(): string;
-}
-
 export interface AgeFilter {
   min: number;
   max: number;
 }
 
-// export class OrgClass {
-//   name: string;
-//   summary?: string;
-//   sport: string;
-//   programs: Program[];
-//   id?: string;
-//   url?: string;
-
-//   constructor(org: OrgData) {}
-// }
-
-// export class Program {
-//   size: number;
-//   name: string;
-
-//   constructor(n: string, s: number) {
-//     this.size = s;
-//     this.name = n;
-//   }
-// }
-
-// let v = new ABC("adsf", 4);
+export type AgeFilterUpdater = (filter: AgeFilter) => void;
+export type SportsFilterUpdater = (sport: string, included: boolean) => void;
+export type SportsFilter = Set<string>;

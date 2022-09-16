@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { programsBySport2, sports } from "./data/data";
+//import { programsBySport2, sports } from "./data/data";
+import { sports } from "./data/data";
 import * as consts from "./consts";
 import Container from "react-bootstrap/Container";
 import { Filter } from "./Filter";
@@ -7,7 +8,7 @@ import { CardView, CardView2 } from "./ProgramTable";
 import { Routes, Route, Link } from "react-router-dom";
 // import { OrgView } from "./OrgView";
 import { Col, Row } from "react-bootstrap";
-import { AgeFilter } from "./types";
+import { AgeFilter, SportsFilterUpdater } from "./types";
 
 function App() {
   return (
@@ -27,7 +28,10 @@ function Dashboard() {
     max: consts.MAX_FILTER_AGE,
   });
 
-  const updateFilteredSports = (sport: string, included: boolean) => {
+  const updateFilteredSports: SportsFilterUpdater = (
+    sport: string,
+    included: boolean
+  ) => {
     setSportsFilter((prev) => {
       let n = new Set(Array.from(prev)); // https://github.com/Microsoft/TypeScript/issues/8856
       included ? n.add(sport) : n.delete(sport);
@@ -45,7 +49,7 @@ function Dashboard() {
     }
   };
 
-  let p = programsBySport2(sportsFilter, ageFilter);
+  //let p = programsBySport2(sportsFilter, ageFilter);
 
   return (
     <Container className="App">

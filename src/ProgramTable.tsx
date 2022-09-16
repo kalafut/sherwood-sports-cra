@@ -29,6 +29,7 @@ export function CardView2() {
               const prog = program;
               return (
                 <ListGroup.Item
+                  key={hash(prog)}
                   variant={
                     prog.registration &&
                     monthInRange(m, [prog.registration, prog.season![0]])
@@ -70,8 +71,8 @@ export function CardView2() {
   // TODO: can I somehow use <Row/> here?
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
-      {cards.map((c) => (
-        <Col>{c}</Col>
+      {cards.map((c, i) => (
+        <Col key={i}>{c}</Col>
       ))}
     </div>
   );
