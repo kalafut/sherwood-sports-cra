@@ -3,7 +3,7 @@ import { OrgList } from "../types";
 
 export const orgs: OrgList = [
   {
-    name: "Sample Sport Org 1",
+    name: "Sample Org",
     sport: consts.SAMPLE,
     programs: [
       {

@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { filteredOrgs, orgs, sports } from "./data/data";
+import { filteredOrgs, sports } from "./data/data";
 import * as consts from "./consts";
 import Container from "react-bootstrap/Container";
 import { AgeFilterClass, Filter, SportsFilterClass } from "./Filter";
 import { CardView } from "./OrdCardView";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
-import { AgeFilter, AgeRange, Program, SportsFilterUpdater } from "./types";
+import { AgeRange, SportsFilterUpdater } from "./types";
+import { ErrorList } from "./ErrorList";
 
 function App() {
   return (
     <div className="App">
+      <ErrorList />
       <Routes>
         <Route path="/" element={<Dashboard />} />
       </Routes>
@@ -41,10 +43,6 @@ function Dashboard() {
     ) {
       setAgeFilter(new AgeFilterClass(min, max));
     }
-  };
-
-  const testFilter = (program: Program) => {
-    return program.name > "";
   };
 
   const orgs = filteredOrgs([ageFilter, sportsFilter]);

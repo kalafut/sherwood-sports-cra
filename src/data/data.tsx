@@ -41,14 +41,6 @@ export const allProgramsFlat: Program[] = _.flatMap(data.orgs, (org) => {
     if (prog.sport === undefined) {
       prog.sport = org.sport;
     }
-    if (
-      (prog.ageMin || prog.ageMax || prog.gradeMin || prog.gradeMax) &&
-      prog.allAges
-    ) {
-      throw new Error(
-        `Data Error: Program "${prog.name}" is specifying both age limits and allAges == true`
-      );
-    }
     prog.effectiveAgeMin =
       prog.ageMin ||
       (prog.gradeMin && gradeToAge(prog.gradeMin, false)) ||
@@ -62,28 +54,8 @@ export const allProgramsFlat: Program[] = _.flatMap(data.orgs, (org) => {
   });
 });
 
-const m = allProgramsFlat.map((v: Program) => v.sport);
-
 export const sports: string[] = _.uniq(
   data.orgs.map((v: Org): string => v.sport)
 ).sort();
 
 export const programsBySport = _.groupBy(allProgramsFlat, "sport");
-
-// export function programsBySport2(
-//   sportsFilter: SportsFilter,
-//   ageFilter: AgeFilter
-// ) {
-//   const filtered = allProgramsFlat.filter(
-//     (v: Program) =>
-//       (sportsFilter.size === 0 || sportsFilter.has(v.sport)) &&
-//       v.effectiveAgeMax! >= ageFilter.min &&
-//       v.effectiveAgeMin! <= ageFilter.max
-//   );
-
-//   return _.groupBy(filtered, "sport");
-// }
-
-// export function slug(program: Program): string {
-//   return slugify(program.name);
-// }
