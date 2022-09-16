@@ -23,7 +23,6 @@ export function CardView(props: CardViewProps) {
             <a href={org.url}>{org.name}</a>
           </Card.Title>
           <Card.Text>Some intro text about the organization.</Card.Text>
-          <h5>Programs</h5>
           <ListGroup variant="flush">
             {org.programs.map((program) => {
               const prog = program;

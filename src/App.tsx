@@ -11,7 +11,7 @@ import { ErrorList } from "./ErrorList";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-primary bg-opacity-10">
       <ErrorList />
       <Routes>
         <Route path="/" element={<Dashboard />} />
