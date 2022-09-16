@@ -4,8 +4,7 @@ import { orgs as basketball } from "./basketball";
 import { orgs as soccer } from "./soccer";
 import { orgs as sample } from "./sample";
 import * as consts from "../consts";
-// import slugify from "slug";
-import { AgeFilter, Org, OrgList, Program, SportsFilter } from "../types";
+import { Org, Program } from "../types";
 
 // sport can be overridden per program
 const data: { orgs: Org[] } = {
@@ -18,26 +17,6 @@ function gradeToAge(grade: number, max: boolean) {
   if (grade) {
     return grade + offset;
   }
-}
-
-/*
-function slugifyOrgs() {
-  const allSlugs = new Set();
-  data.orgs.forEach((v) => {
-    const s = slugify(v.name);
-    if (allSlugs.has(s)) {
-      throw new Error(`Duplicate slug name: ${s}`);
-    }
-    allSlugs.add(s);
-    v.id = s;
-  });
-}
-
-slugifyOrgs();
-*/
-
-export function orgById(id: string) {
-  return _.find(data.orgs, ["id", id]);
 }
 
 export function orgs() {

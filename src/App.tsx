@@ -1,12 +1,10 @@
 import { useState } from "react";
-//import { programsBySport2, sports } from "./data/data";
-import { sports } from "./data/data";
+import { orgs, sports } from "./data/data";
 import * as consts from "./consts";
 import Container from "react-bootstrap/Container";
 import { Filter } from "./Filter";
-import { CardView, CardView2 } from "./ProgramTable";
+import { CardView } from "./OrdCardView";
 import { Routes, Route, Link } from "react-router-dom";
-// import { OrgView } from "./OrgView";
 import { Col, Row } from "react-bootstrap";
 import { AgeFilter, SportsFilterUpdater } from "./types";
 
@@ -15,7 +13,6 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        {/* <Route path="/org/:orgname" element={<OrgView />} /> */}
       </Routes>
     </div>
   );
@@ -49,8 +46,6 @@ function Dashboard() {
     }
   };
 
-  //let p = programsBySport2(sportsFilter, ageFilter);
-
   return (
     <Container className="App">
       <Row>
@@ -62,9 +57,7 @@ function Dashboard() {
             sports={sports}
             sportsFilter={sportsFilter}
           />
-          <CardView2 />
-          {/* <CardView /> */}
-          {/* <AllProgramsTable programsBySport={p} skipOrgColumn={true} /> */}
+          <CardView orgs={orgs()} />
         </Col>
       </Row>
     </Container>

@@ -1,6 +1,3 @@
-import slug from "slug";
-import { allProgramsFlat } from "./data/data";
-
 export interface AgeFilter {
   min: number;
   max: number;

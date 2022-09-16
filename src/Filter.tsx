@@ -1,6 +1,5 @@
 import ReactSlider from "react-slider";
 import * as consts from "./consts";
-import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
@@ -132,40 +131,3 @@ export function AgeRangeSlider(props: AgeRangeSliderProps) {
     />
   );
 }
-
-// // eslint-disable-next-line no-unused-vars
-// function AgeRangePicker({ ageFilter, updateAgeFilter }) {
-//   //const max = ageFilter.max === consts.MAX_FILTER_AGE ? `${consts.MAX_FILTER_AGE}+` : ageFilter.max;
-//   const max = ageFilter.max;
-//   return (
-//     <div>
-//       <input
-//         type="number"
-//         value={`${ageFilter.min}`}
-//         onChange={(e) => {
-//           updateAgeFilter({ min: e.target.valueAsNumber, max: ageFilter.max });
-//         }}
-//       />
-//       <input
-//         type="number"
-//         value={`${max}`}
-//         onChange={(e) => {
-//           updateAgeFilter({ min: ageFilter.min, max: e.target.valueAsNumber });
-//         }}
-//       />
-//     </div>
-//   );
-// }
-
-// export function AgeRangePicker2({ ageFilter, updateAgeFilter }) {
-//   let options = [];
-
-//   for (let i = consts.MIN_FILTER_AGE; i <= consts.MAX_FILTER_AGE; i++) {
-//     options.push(
-//       <option key={i} value={i}>
-//         {i}
-//       </option>
-//     );
-//   }
-//   return <Form.Select>{options.map((o) => o)}</Form.Select>;
-// }

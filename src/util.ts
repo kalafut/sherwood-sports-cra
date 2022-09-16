@@ -88,38 +88,3 @@ export function ageStr(program: Program) {
 
   return ret;
 }
-
-// export function ageStr2(program: Program): string {
-//   const { allAges, ageMin, ageMax, gradeMin, gradeMax } = program;
-
-//   let ret = {
-//     str: "",
-//     type: "age", // TODO bleh
-//   };
-
-//   if (allAges) {
-//     return "All ages";
-//   }
-
-//   if (ageMin && ageMax) {
-//     ret = `${ageMin}–${ageMax}`;
-//   } else if (ageMax) {
-//     ret = `2–${ageMax}`;
-//   } else if (ageMin) {
-//     ret = `${ageMin}+`;
-//   }
-
-//   if (ret !== "") {
-//     return ret;
-//   }
-
-//   if (gradeMin && gradeMax) {
-//     ret = `${gradeMin}–${ordinal(gradeMax)}`;
-//   } else if (gradeMax) {
-//     ret = `K–${ordinal(gradeMax)}`;
-//   } else if (gradeMin) {
-//     ret = `${ordinal(gradeMin)}+`;
-//   }
-
-//   return ret;
-// }
