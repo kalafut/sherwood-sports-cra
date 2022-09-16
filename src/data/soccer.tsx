@@ -48,4 +48,19 @@ export const orgs: OrgList = [
       },
     ],
   },
+  {
+    status: "abc",
+    sport: consts.SOCCER,
+    name: "Tualatin Indoor Soccer",
+    summary: "Nearby soccer",
+    url: "https://www.tualatinindoor.com",
+    programs: [
+      // {
+      //   name: "At least 10",
+      //   url: "http://www.westsidetimbers.org/about-us/program-overview/development-program-wdp",
+      //   ageMin: 10,
+      // },
+    ],
+    location: "Tualatin",
+  },
 ];

@@ -13,6 +13,8 @@ import {
 } from "./types";
 
 interface FilterProps {
+  localFilter: boolean;
+  updateLocalFilter: any;
   ageFilter: AgeFilter;
   updateAgeFilter: AgeFilterUpdater;
   updateFilteredSports: SportsFilterUpdater;
@@ -22,6 +24,8 @@ interface FilterProps {
 
 export function Filter(props: FilterProps) {
   const {
+    localFilter,
+    updateLocalFilter,
     ageFilter,
     updateAgeFilter,
     updateFilteredSports,
@@ -49,6 +53,12 @@ export function Filter(props: FilterProps) {
             updateFilteredSports={updateFilteredSports}
             sports={sports}
             sportsFilter={sportsFilter}
+          />
+          Local:
+          <input
+            type="checkbox"
+            checked={localFilter}
+            onChange={updateLocalFilter}
           />
         </div>
       </Collapse>

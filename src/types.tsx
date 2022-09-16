@@ -27,6 +27,8 @@ export interface Org {
   programs: Program[];
   id?: string;
   url?: string;
+  location?: string;
+  status?: string;
 }
 
 export interface AgeFilter {

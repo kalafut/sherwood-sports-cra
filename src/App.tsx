@@ -6,7 +6,13 @@ import { AgeFilterClass, Filter, SportsFilterClass } from "./Filter";
 import { CardView } from "./OrdCardView";
 import { Routes, Route } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
-import { AgeRange, SportsFilterUpdater } from "./types";
+import {
+  AgeRange,
+  Org,
+  Program,
+  ProgramFilterer,
+  SportsFilterUpdater,
+} from "./types";
 import { ErrorList } from "./ErrorList";
 
 function App() {
@@ -25,6 +31,7 @@ function Dashboard() {
     new SportsFilterClass(sports)
   );
   const [ageFilter, setAgeFilter] = useState(new AgeFilterClass());
+  const [localFilter, setLocalFilter] = useState(false);
 
   const updateFilteredSports: SportsFilterUpdater = (
     sport: string,
@@ -45,13 +52,23 @@ function Dashboard() {
     }
   };
 
-  const orgs = filteredOrgs([ageFilter, sportsFilter]);
+  const updateLocalFilter = () => setLocalFilter(!localFilter);
+
+  const filterLocal: ProgramFilterer = {
+    filter: (program: Program, org: Org): boolean => {
+      return !localFilter || !org.location;
+    },
+  };
+
+  const orgs = filteredOrgs([ageFilter, sportsFilter, filterLocal]);
 
   return (
     <Container className="App">
       <Row>
         <Col>
           <Filter
+            localFilter={localFilter}
+            updateLocalFilter={updateLocalFilter}
             ageFilter={ageFilter}
             updateAgeFilter={updateAgeFilter}
             updateFilteredSports={updateFilteredSports}

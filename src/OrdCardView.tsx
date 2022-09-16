@@ -17,10 +17,15 @@ export function CardView(props: CardViewProps) {
 
   const cards = orgs.map((org: Org) => {
     return (
-      <Card key={hash(org)}>
+      <Card key={hash(org)} bg={org.location ? "" : ""}>
         <Card.Body>
           <Card.Title>
-            <a href={org.url}>{org.name}</a>
+            <div className="d-flex justify-content-between">
+              <a href={org.url}>{org.name}</a>
+              <span className="fw-bold fs-6 text-danger">
+                {org.location ? org.location : null}
+              </span>
+            </div>
           </Card.Title>
           <Card.Text>Some intro text about the organization.</Card.Text>
           <ListGroup variant="flush">
