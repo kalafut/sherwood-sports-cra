@@ -6,7 +6,6 @@ export const orgs: OrgList = [
     name: "Sherwood Youth Basketball",
     summary: "Hoops!",
     sport: consts.BASKETBALL,
-    location: "Paris",
     programs: [
       {
         name: "Rec Basketball",

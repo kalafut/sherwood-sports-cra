@@ -11,6 +11,7 @@ import {
   Program,
   SportsFilterUpdater,
 } from "./types";
+import { Card, Nav, Tab, TabContent, TabPane, Tabs } from "react-bootstrap";
 
 interface FilterProps {
   localFilter: boolean;
@@ -32,36 +33,112 @@ export function Filter(props: FilterProps) {
     sports,
     sportsFilter,
   } = props;
-  const [filterVisible, toggleFilter] = useState(true);
+  const [filterVisible, setFilterVisible] = useState(false);
 
   const toggleButton = (
-    <Button onClick={() => toggleFilter(!filterVisible)}>{`${
-      filterVisible ? "Hide" : "Show"
-    } filters!`}</Button>
+    <Button
+      className={filterVisible ? "float-end" : ""}
+      onClick={() => setFilterVisible(!filterVisible)}
+    >
+      {filterVisible ? "Close" : "Filter"}
+    </Button>
   );
 
   return (
     <div>
-      {toggleButton}
-      <Collapse in={filterVisible}>
-        <div>
-          <AgeRangeSlider
-            ageFilter={ageFilter}
-            updateAgeFilter={updateAgeFilter}
-          />
-          <SportFilter
-            updateFilteredSports={updateFilteredSports}
-            sports={sports}
-            sportsFilter={sportsFilter}
-          />
-          Local:
-          <input
-            type="checkbox"
-            checked={localFilter}
-            onChange={updateLocalFilter}
-          />
+      {!filterVisible ? (
+        toggleButton
+      ) : (
+        <Collapse in={filterVisible}>
+          <div>
+            <Card>
+              <Card.Header>
+                <Nav variant="tabs" defaultActiveKey="a" data-bs-tabs="tabs">
+                  <Nav.Item>
+                    <Nav.Link data-bs-toggle="tab" href="#sports" active>
+                      Sports
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link data-bs-toggle="tab" href="#age">
+                      Age
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link data-bs-toggle="tab" href="#season">
+                      Season & Location
+                    </Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </Card.Header>
+              <Card.Body className="tab-content">
+                <TabPane id="sports" transition={false} active>
+                  <SportFilter
+                    updateFilteredSports={updateFilteredSports}
+                    sports={sports}
+                    sportsFilter={sportsFilter}
+                  />
+                </TabPane>
+                <TabPane id="age" transition={false}>
+                  <AgeRangeSlider
+                    ageFilter={ageFilter}
+                    updateAgeFilter={updateAgeFilter}
+                  />
+                </TabPane>
+                <TabPane id="season" transition={false}>
+                  <div>
+                    Local:
+                    <input
+                      type="checkbox"
+                      checked={localFilter}
+                      onChange={updateLocalFilter}
+                    />
+                  </div>
+                </TabPane>
+                {toggleButton}
+              </Card.Body>
+            </Card>
+          </div>
+        </Collapse>
+      )}
+    </div>
+  );
+}
+
+export function TestComp() {
+  return (
+    <div className="card">
+      <div className="card-header">
+        <h5 className="card-title">Network Settings</h5>
+        <ul className="nav nav-tabs card-header-tabs" data-bs-tabs="tabs">
+          <li className="nav-item">
+            <a
+              className="nav-link active"
+              aria-current="true"
+              data-bs-toggle="tab"
+              href="#dhcp"
+            >
+              DHCP
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" data-bs-toggle="tab" href="#static">
+              Static
+            </a>
+          </li>
+        </ul>
+      </div>
+      <form className="card-body tab-content">
+        <div className="tab-pane active" id="dhcp">
+          <p className="card-text">Change DHCP Network settings.</p>
         </div>
-      </Collapse>
+        <div className="tab-pane" id="static">
+          <p className=" card-text">Change Static Network settings.</p>
+        </div>
+        <button className="btn btn-primary" type="submit">
+          Save
+        </button>
+      </form>
     </div>
   );
 }

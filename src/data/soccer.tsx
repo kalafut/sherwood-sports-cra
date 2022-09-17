@@ -55,11 +55,11 @@ export const orgs: OrgList = [
     summary: "Nearby soccer",
     url: "https://www.tualatinindoor.com",
     programs: [
-      // {
-      //   name: "At least 10",
-      //   url: "http://www.westsidetimbers.org/about-us/program-overview/development-program-wdp",
-      //   ageMin: 10,
-      // },
+      {
+        name: "At least 10",
+        url: "http://www.westsidetimbers.org/about-us/program-overview/development-program-wdp",
+        ageMin: 10,
+      },
     ],
     location: "Tualatin",
   },

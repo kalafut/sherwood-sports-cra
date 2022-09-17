@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap";
+import "./index.css";
+
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 // https://create-react-app.dev/docs/adding-bootstrap/#using-a-custom-theme
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLFormElement);
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLFormElement
+);
 root.render(
   <React.StrictMode>
     <HashRouter>
