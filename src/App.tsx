@@ -14,10 +14,15 @@ import {
 } from "./types";
 import { ErrorList } from "./ErrorList";
 import { Routes, Route } from "react-router-dom";
+import { UnderConstruction } from "./UnderConstruction";
 
 function App() {
+  const host = window.location.host;
+  const local = host.startsWith("localhost") || host.startsWith("127.0.0.1");
+
   return (
     <Container className="App">
+      {!local ? <UnderConstruction /> : null}
       <ErrorList />
       <Routes>
         <Route path="/" element={<Dashboard />} />
