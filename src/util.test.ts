@@ -1,4 +1,4 @@
-import { monthInRange } from './util';
+import { monthInRange, isUpcoming } from './util';
 import * as c from './consts';
 
 test('calculates month in range', () => {
@@ -21,3 +21,19 @@ test('calculates month in range (spanning EOY)', () => {
     expect(m(c.FEB, [c.NOV, c.FEB])).toBe(true);
     expect(m(c.MAR, [c.NOV, c.FEB])).toBe(false);
 });
+
+test('checks if program start is within 2 months of the season', () => {
+    const u = isUpcoming
+
+    expect(u(c.JAN, [c.APR, c.JUN])).toBe(false);
+    expect(u(c.FEB, [c.APR, c.JUN])).toBe(true);
+    expect(u(c.MAR, [c.APR, c.JUN])).toBe(true);
+    expect(u(c.APR, [c.APR, c.JUN])).toBe(true);
+    expect(u(c.MAY, [c.APR, c.JUN])).toBe(false);
+
+    expect(u(c.OCT, [c.JAN, c.FEB])).toBe(false);
+    expect(u(c.NOV, [c.JAN, c.FEB])).toBe(true);
+    expect(u(c.DEC, [c.JAN, c.FEB])).toBe(true);
+    expect(u(c.JAN, [c.JAN, c.FEB])).toBe(true);
+    expect(u(c.FEB, [c.JAN, c.FEB])).toBe(false);
+})

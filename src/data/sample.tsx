@@ -9,14 +9,14 @@ export const orgs: OrgList = [
       {
         name: "Sample 1",
         season: [consts.NOV, consts.MAR],
-        registration: consts.OCT,
+        //registration: consts.OCT,
         ageMin: 7,
         ageMax: 10,
       },
       {
         name: "No age limit",
-        season: [consts.NOV, consts.MAR],
-        registration: consts.OCT,
+        season: [consts.JAN, consts.MAR],
+        // registration: consts.OCT,
         allAges: true,
       },
     ],

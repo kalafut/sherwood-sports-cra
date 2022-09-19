@@ -5,7 +5,7 @@ export interface AgeRange {
 
 export interface Program {
   name: string;
-  registration?: number;
+  //registration?: number;
   season?: number[];
   sport?: string;
   gradeMin?: number;

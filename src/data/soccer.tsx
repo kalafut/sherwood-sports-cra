@@ -10,7 +10,7 @@ export const orgs: OrgList = [
       {
         name: "Fall Soccer",
         season: [consts.APR, consts.JUN],
-        registration: consts.JAN,
+        // registration: consts.JAN,
       },
       {
         name: "Westside Timbers",
@@ -25,7 +25,7 @@ export const orgs: OrgList = [
       {
         name: "Timber Tots",
         season: [consts.APR, consts.JUN],
-        registration: consts.JAN,
+        // registration: consts.JAN,
         url: "http://www.westsidetimbers.org/about-us/program-overview/timber-tots-program",
         ageMax: 6,
       },

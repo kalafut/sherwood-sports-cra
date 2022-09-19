@@ -9,7 +9,7 @@ export const orgs: OrgList = [
     programs: [
       {
         name: "Rec Basketball",
-        registration: consts.SEP,
+        // registration: consts.SEP,
         season: [consts.NOV, consts.FEB],
         gradeMin: 3,
         gradeMax: 12,

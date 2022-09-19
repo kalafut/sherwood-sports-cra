@@ -3,12 +3,13 @@ import { orgs as lacrosse } from "./lacrosse";
 import { orgs as basketball } from "./basketball";
 import { orgs as soccer } from "./soccer";
 import { orgs as sample } from "./sample";
+import { orgs as martialArts } from "./martial_arts";
 import * as consts from "../consts";
 import { Org, Program, ProgramFilterer } from "../types";
 
 // sport can be overridden per program
 const data: { orgs: Org[] } = {
-  orgs: [...basketball, ...lacrosse, ...soccer, ...sample],
+  orgs: [...basketball, ...lacrosse, ...soccer, ...martialArts, ...sample],
 };
 
 // TODO: combine

@@ -1,6 +1,11 @@
-import { currentMonth, monthStr, monthInRange, ordinal } from "./util";
+import {
+  currentMonth,
+  monthStr,
+  monthInRange,
+  ordinal,
+  isUpcoming,
+} from "./util";
 import Badge from "react-bootstrap/Badge";
-import _ from "lodash";
 import hash from "object-hash";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -19,7 +24,7 @@ export function CardView(props: CardViewProps) {
 
   const cards = orgs.map((org: Org) => {
     return (
-      <Card key={hash(org)} bg={org.location ? "" : ""}>
+      <Card key={hash(org)} border={org.location ? "danger" : "secondary"}>
         <Card.Body>
           <Card.Title>
             <div className="d-flex justify-content-between">
@@ -33,15 +38,14 @@ export function CardView(props: CardViewProps) {
           <ListGroup variant="flush">
             {org.programs.map((program) => {
               const prog = program;
+
+              const startingSoon = isUpcoming(m, prog.season);
+              //monthInRange(m, [prog.registration, prog.season![0]]);
+
               return (
                 <ListGroup.Item
                   key={hash(prog)}
-                  variant={
-                    prog.registration &&
-                    monthInRange(m, [prog.registration, prog.season![0]])
-                      ? "warning"
-                      : ""
-                  }
+                  variant={startingSoon ? "warning" : ""}
                   className="d-flex align-items-start justify-content-between"
                 >
                   <Col className="d-flex align-items-start justify-content-start">

@@ -3,7 +3,7 @@ import { filteredOrgs, sports } from "./data/data";
 import * as consts from "./consts";
 import Container from "react-bootstrap/Container";
 import { AgeFilterClass, Filter, SportsFilterClass, TestComp } from "./Filter";
-import { CardView } from "./OrdCardView";
+import { CardView } from "./CardView";
 import { Col, Row } from "react-bootstrap";
 import {
   AgeRange,

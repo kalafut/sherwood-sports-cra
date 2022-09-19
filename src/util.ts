@@ -1,4 +1,5 @@
 import { Program } from "./types";
+import * as consts from "./consts";
 
 interface numStrConv {
   [key: number]: string;
@@ -40,7 +41,7 @@ export function monthStr(monthNum: number) {
 }
 
 export function currentMonth() {
-  //return 1;
+  return consts.FEB;
   return new Date().getMonth() + 1;
 }
 
@@ -54,6 +55,20 @@ export function monthInRange(month: number, [start, end]: number[]) {
   }
 
   return start <= month && month <= end;
+}
+
+export function isUpcoming(month: number, season: number[] | undefined) :boolean{
+  if (!season) {
+    return false
+  }
+
+  let start = season[0];
+
+  if (month > start) {
+    start += 12
+  }
+
+  return start-month <= 2
 }
 
 // TODO: refactor
