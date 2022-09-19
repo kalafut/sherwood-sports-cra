@@ -6,7 +6,7 @@ export function ErrorList() {
   const [errors, setErrors] = useState([] as ReactElement[]);
 
   useEffect(() => {
-    setErrors(calcDataErrors());
+    setErrors(findDataErrors());
   }, []);
 
   if (errors.length === 0) {
@@ -27,7 +27,7 @@ export function ErrorList() {
   );
 }
 
-function calcDataErrors(): ReactElement[] {
+function findDataErrors(): ReactElement[] {
   const orgNames = new Set<string>();
   const errors: ReactElement[] = [];
 
@@ -76,6 +76,21 @@ function calcDataErrors(): ReactElement[] {
             </strong>{" "}
             is specifying both age limits and{" "}
             <span className="fw-bold font-monospace">allAges == true</span>
+          </span>
+        );
+      }
+
+      if (
+        (program.ageMin || program.ageMax) &&
+        (program.gradeMin || program.gradeMax)
+      ) {
+        errors.push(
+          <span>
+            Invalid ages:{" "}
+            <strong>
+              {org.name}/{name}
+            </strong>{" "}
+            is specifying both age and grade limits.
           </span>
         );
       }
