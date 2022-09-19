@@ -6,6 +6,8 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Col from "react-bootstrap/Col";
 import { Org, Program } from "./types";
+import { programsBySport } from "./data/data";
+import * as consts from "./consts";
 
 interface CardViewProps {
   orgs: Org[];
@@ -51,13 +53,7 @@ export function CardView(props: CardViewProps) {
                   </Col>
                   <Col className="d-flex align-items-start justify-content-end">
                     <Col className="d-flex justify-content-end">
-                      <div>
-                        {program.season
-                          ? `${monthStr(program.season[0])}–${monthStr(
-                              program.season[1]
-                            )}`
-                          : ""}
-                      </div>
+                      <Season program={program} />
                     </Col>
                     <Col className="d-flex justify-content-end">
                       <AgeBadge program={program} />
@@ -80,6 +76,20 @@ export function CardView(props: CardViewProps) {
       ))}
     </div>
   );
+}
+
+interface SeasonProps {
+  program: Program;
+}
+
+function Season(props: SeasonProps) {
+  const { season } = props.program;
+
+  if (!season || season === consts.ALL_YEAR) {
+    return null;
+  }
+
+  return <div>{`${monthStr(season[0])}–${monthStr(season[1])}`}</div>;
 }
 
 interface AgeBadgeProps {
