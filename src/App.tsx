@@ -13,8 +13,11 @@ import {
   SportsFilterUpdater,
 } from "./types";
 import { ErrorList } from "./ErrorList";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { UnderConstruction } from "./UnderConstruction";
+import { WelcomeText } from "./WelcomeText";
+import { About } from "./About";
+import { NavigationBar } from "./NavigationBar";
 
 function App() {
   const host = window.location.host;
@@ -22,10 +25,12 @@ function App() {
 
   return (
     <Container className="App">
+      <NavigationBar />
       {!local ? <UnderConstruction /> : null}
       <ErrorList />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route index element={<Dashboard />} />
+        <Route path="about" element={<About />} />
       </Routes>
     </Container>
   );
@@ -70,6 +75,7 @@ function Dashboard() {
   return (
     <Row>
       <Col>
+        <WelcomeText />
         <Filter
           localFilter={localFilter}
           updateLocalFilter={updateLocalFilter}
